@@ -1,0 +1,58 @@
+import java.util.Scanner;
+
+public class Springer {
+    public static void main (String [] args) {
+        int[] springer = new int[2];
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Gebe aktuelle Zeile des Springers ein!");
+        springer[0] = scanner.nextInt();
+        System.out.println("Gebe aktuelle Spalte des Springers ein!");
+        springer[1] = scanner.nextInt();
+        int[] springer2 = new int[2];
+        System.out.println("Gebe gewünschte Zeile des Springers ein!");
+        springer2[0] = scanner.nextInt();
+        System.out.println("Gebe gewünschte Spalte des Springers ein!");
+        springer2[1] = scanner.nextInt();
+
+        boolean pruefstatus = pruefen(springer[0],springer[1], springer2[0],springer2[1]);
+        if(pruefstatus == true){
+            System.out.println("Position ist in Ordnung");
+        } else {
+            System.out.println("Position ist NICHT in Ordnung");
+        }
+    }
+
+    public static boolean pruefen (int zeile, int spalte, int zeile2, int spalte2) {
+        if(zeile2 == 0 && spalte2 == 0) {
+            int[][] springer = new int[8][2];
+            springer[0][0] = zeile +1;
+            springer[0][1] = spalte +2;
+            springer[1][0] = zeile +2;
+            springer[1][1] = spalte +1;
+            springer[2][0] = zeile -1;
+            springer[2][1] = spalte -2;
+            springer[3][0] = zeile -2;
+            springer[3][1] = spalte -1;
+            springer[4][0] = zeile -1;
+            springer[4][1] = spalte +2;
+            springer[5][0] = zeile -2;
+            springer[5][1] = spalte +1;
+            springer[6][0] = zeile +1;
+            springer[6][1] = spalte -2;
+            springer[7][0] = zeile +2;
+            springer[7][1] = spalte -1;
+            int n = 0;
+            System.out.println("Mögliche Positionen");
+            for(int i = 0;i <= 7;i++){
+                if((springer[i][0] >= 1 && springer[i][0] <= 8) && (springer[i][1] >= 1 && springer[i][1] <= 8)) {
+                    System.out.println("[" + springer[i][0] + "]" + "[" + springer[i][1] + "]");
+                }
+            }
+        }
+        if(zeile < 1 || spalte < 1 || zeile2 < 1 || spalte2 < 1 || zeile > 8 || spalte > 8 || zeile2 > 8 || spalte2 > 8) { return false;}
+        if((zeile2 == zeile +1 && spalte2 == spalte +2) || (zeile2 == zeile +2 && spalte2 == spalte +1) || (zeile2 == zeile -1 && spalte2 == spalte -2) || (zeile2 == zeile -2 && spalte2 == spalte -1) ||
+                (zeile2 == zeile -1 && spalte2 == spalte +2) || (zeile2 == zeile -2 && spalte2 == spalte +1) || (zeile2 == zeile +1 && spalte2 == spalte -2) || (zeile2 == zeile +2 && spalte2 == spalte -1)) {
+            return true;
+        } else { return false;}
+    }
+}
